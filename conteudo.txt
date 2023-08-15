@@ -1,0 +1,1921 @@
+ 
+---- Início do arquivo: clientes.html ---- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes - Petshop</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="clientes.js" defer></script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="loja.html">Loja</a>
+    </nav>
+
+    <!-- Lista de clientes em cards -->
+    <section id="client-list">
+        <!-- Os cards serão gerados dinamicamente aqui -->
+    </section>
+
+    <!-- Modal para detalhes do cliente -->
+    <div id="client-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <!-- Os detalhes do cliente serão inseridos aqui -->
+        </div>
+    </div>
+
+</body>
+</html>
+---- Fim do arquivo: clientes.html ---- 
+ 
+---- Início do arquivo: index.html ---- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Petshop - Início</title>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="loja.html">Loja</a>
+    </nav>
+    
+    <section id="presentation">
+        <img src="logo.jpg" alt="Logo da Petshop">
+        <h1>Bem-vindo à Petshop</h1>
+        <p>Os melhores serviços e produtos para o seu pet.</p>
+    </section>
+
+    <section id="form-section">
+        <h2>Cadastrar Cliente</h2>
+        <form id="client-form">
+            <label for="fullname">Nome completo:</label>
+            <input type="text" id="fullname" name="fullname" required>
+            
+            <label for="phone">Telefone:</label>
+            <input type="tel" id="phone" name="phone" placeholder="(XX) XXXXX-XXXX" required>
+            
+            <label for="address">Endereço:</label>
+            <input type="text" id="address" name="address" required>
+            
+            <label for="date">Data do atendimento:</label>
+            <input type="date" id="date" name="date" required>
+            
+            <label for="petname">Nome do pet:</label>
+            <input type="text" id="petname" name="petname" required>
+            
+            <label for="petage">Idade do pet (anos):</label>
+            <input type="number" id="petage" name="petage" required>
+            
+            <label for="petweight">Peso do pet (kg):</label>
+            <input type="number" id="petweight" name="petweight" required>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+        <p id="message"></p>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
+---- Fim do arquivo: index.html ---- 
+ 
+---- Início do arquivo: loja.html ---- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja - Petshop</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="loja.js" defer></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="loja.html">Loja</a>
+    </nav>
+
+    <!-- Lista de produtos em cards -->
+    <section id="product-list">
+        <!-- Os cards serão gerados dinamicamente aqui -->
+    </section>
+
+    <div id="notification" class="notification">
+        Produto adicionado ao carrinho!
+    </div>
+</body>
+</html>
+---- Fim do arquivo: loja.html ---- 
+ 
+---- Início do arquivo: styles.css ---- 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: lightgray;
+}
+
+nav {
+    background-color: #4CAF50;
+    padding: 1em;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+#presentation {
+    text-align: center;
+    padding: 2em 0;
+}
+
+#presentation img {
+    width: 100px;
+    height: auto;
+    margin-top: 1em;
+}
+
+#form-section {
+    max-width: 600px;
+    margin: 2em auto;
+    padding: 2em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form label, form input {
+    display: block;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+#client-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 696px;
+    align-self: center;
+}
+
+.card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 170px;
+    text-align: center;
+}
+ 
+@media (max-width: 767px) {
+    #client-list {
+        justify-content: center;
+    }
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    /* width: 70%; */
+    max-width: 300px;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.notification {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+---- Fim do arquivo: styles.css ---- 
+ 
+---- Início do arquivo: clientes.js ---- 
+// Carrega e exibe a lista de clientes
+document.addEventListener('DOMContentLoaded', function() {
+    const clientList = document.getElementById('client-list');
+
+    // Carrega os clientes do LocalStorage
+    for (let i = 0; i < localStorage.length; i++) {
+        let phone = localStorage.key(i);
+        let client = JSON.parse(localStorage.getItem(phone));
+
+        // Cria o card para cada cliente
+        let card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <h3>${client.petname}</h3>
+            <p>Data do atendimento: ${client.date}</p>
+        `;
+        card.addEventListener('click', function() {
+            showClientModal(client);
+        });
+
+        clientList.appendChild(card);
+    }  
+});
+
+// Exibe o modal com os detalhes do cliente
+function showClientModal(client) {
+
+    const modal = document.getElementById('client-modal');
+    const content = modal.querySelector('.modal-content');
+
+    content.innerHTML = `
+        <span class="close-button">×</span>
+        <h3>Detalhes do Cliente</h3>
+        <p>Nome completo: ${client.fullname}</p>
+        <p>Telefone: ${client.phone}</p>
+        <p>Endereço: ${client.address}</p>
+        <p>Data do atendimento: ${client.date}</p>
+        <p>Nome do animal: ${client.petname}</p>
+        <p>Idade do animal: ${client.petage} anos</p>
+        <p>Peso do animal: ${client.petweight} kg</p>
+    `;
+
+    modal.style.display = 'block';
+
+    const closeButton = content.querySelector('.close-button');
+    closeButton.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    document.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+}---- Fim do arquivo: clientes.js ---- 
+ 
+---- Início do arquivo: loja.js ---- 
+/* 
+    // Exemplo de produtos
+    const products = [
+        { id: 1, name: 'Ração para cães', image: 'path/to/image1.jpg', price: 'R$ 50,00' },
+        { id: 2, name: 'Brinquedo para gatos', image: 'path/to/image2.jpg', price: 'R$ 20,00' }
+    ];
+
+document.addEventListener('DOMContentLoaded', function() {
+    const productList = document.getElementById('product-list');
+
+    products.forEach(product => {
+        let card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>Preço: ${product.price}</p>
+            <button onclick="addToCart(${product.id})">Adicionar ao carrinho</button>
+        `;
+
+        productList.appendChild(card);
+    });
+});
+
+// ... (restante do código anterior)
+
+function addToCart(productId) {
+    // Recuperar o carrinho do LocalStorage
+    let cart = JSON.parse(localStorage.getItem('carrinho') || '[]');
+
+    // Verificar se o produto já está no carrinho
+    let productInCart = cart.find(p => p.id === productId);
+
+    if (productInCart) {
+        // Se o produto já estiver no carrinho, aumentamos a quantidade
+        productInCart.quantity += 1;
+    } else {
+        // Se não estiver, adicionamos o produto ao carrinho com quantidade 1
+        let product = products.find(p => p.id === productId);
+        product.quantity = 1;
+        cart.push(product);
+    }
+
+    // Salvar o carrinho atualizado no LocalStorage
+    localStorage.setItem('carrinho', JSON.stringify(cart));
+
+    // Mostrar notificação
+    const notification = document.getElementById('notification');
+    notification.style.display = 'block';
+
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 3000);
+}
+ */
+
+
+// Exemplo de produtos
+const products = [
+    { id: 1, name: 'Ração para cães', image: 'path/to/image1.jpg', price: 'R$ 50,00' },
+    { id: 2, name: 'Brinquedo para gatos', image: 'path/to/image2.jpg', price: 'R$ 20,00' }
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    const productList = document.getElementById('product-list');
+
+    products.forEach(product => {
+        let card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>Preço: ${product.price}</p>
+            <button onclick="addToCart(${product.id})">Adicionar ao carrinho</button>
+        `;
+
+        productList.appendChild(card);
+    });
+});
+
+function addToCart(productId) {
+    // Recuperar o carrinho do LocalStorage
+    let cart = JSON.parse(localStorage.getItem('carrinho') || '[]');
+
+    // Verificar se o produto já está no carrinho
+    let productInCart = cart.find(p => p.id === productId);
+
+    if (!productInCart) {
+        // Se o produto não estiver no carrinho, adicionamos
+        let product = products.find(p => p.id === productId);
+        cart.push(product);
+
+        // Salvar o carrinho atualizado no LocalStorage
+        localStorage.setItem('carrinho', JSON.stringify(cart));
+    }
+
+    // Mostrar notificação
+    const notification = document.getElementById('notification');
+    notification.style.display = 'block';
+
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 3000);
+}
+
+---- Fim do arquivo: loja.js ---- 
+ 
+---- Início do arquivo: script.js ---- 
+document.getElementById('client-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const client = {
+        fullname: e.target.fullname.value,
+        phone: e.target.phone.value,
+        address: e.target.address.value,
+        date: e.target.date.value,
+        petname: e.target.petname.value,
+        petage: e.target.petage.value,
+        petweight: e.target.petweight.value
+    };
+
+    localStorage.setItem(client.phone, JSON.stringify(client));
+
+    document.getElementById('message').innerText = "Cliente adicionado com sucesso!";
+
+    setTimeout(() => {
+        document.getElementById('message').innerText = "";
+    }, 3000);
+    
+    e.target.reset();
+}); 
+
+// Formatação do campo de telefone
+document.getElementById('phone').addEventListener('input', function(e) {
+    let value = e.target.value;
+
+    // Remove todos os caracteres não numéricos
+    value = value.replace(/\D/g, "");
+
+    // Adiciona o primeiro parêntese
+    if (value.length > 0) {
+        value = "(" + value;
+    }
+
+    // Fecha o parêntese e inicia os próximos números
+    if (value.length > 3) {
+        value = value.substring(0, 3) + ") " + value.substring(3);
+    }
+
+    // Adiciona o hífen
+    if (value.length > 9) {
+        value = value.substring(0, 10) + "-" + value.substring(10, 14);
+    }
+
+    // Limita o tamanho máximo (com os caracteres de formatação)
+    if (value.length > 15) {
+        value = value.substring(0, 15);
+    }
+
+    e.target.value = value;
+});---- Fim do arquivo: script.js ---- 
+ 
+---- Início do arquivo: clientes.html ---- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes - Petshop</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="clientes.js" defer></script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="loja.html">Loja</a>
+    </nav>
+
+    <!-- Lista de clientes em cards -->
+    <section id="client-list">
+        <!-- Os cards serão gerados dinamicamente aqui -->
+    </section>
+
+    <!-- Modal para detalhes do cliente -->
+    <div id="client-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <!-- Os detalhes do cliente serão inseridos aqui -->
+        </div>
+    </div>
+
+</body>
+</html>
+---- Fim do arquivo: clientes.html ---- 
+ 
+---- Início do arquivo: index.html ---- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Petshop - Início</title>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="loja.html">Loja</a>
+    </nav>
+    
+    <section id="presentation">
+        <img src="logo.jpg" alt="Logo da Petshop">
+        <h1>Bem-vindo à Petshop</h1>
+        <p>Os melhores serviços e produtos para o seu pet.</p>
+    </section>
+
+    <section id="form-section">
+        <h2>Cadastrar Cliente</h2>
+        <form id="client-form">
+            <label for="fullname">Nome completo:</label>
+            <input type="text" id="fullname" name="fullname" required>
+            
+            <label for="phone">Telefone:</label>
+            <input type="tel" id="phone" name="phone" placeholder="(XX) XXXXX-XXXX" required>
+            
+            <label for="address">Endereço:</label>
+            <input type="text" id="address" name="address" required>
+            
+            <label for="date">Data do atendimento:</label>
+            <input type="date" id="date" name="date" required>
+            
+            <label for="petname">Nome do pet:</label>
+            <input type="text" id="petname" name="petname" required>
+            
+            <label for="petage">Idade do pet (anos):</label>
+            <input type="number" id="petage" name="petage" required>
+            
+            <label for="petweight">Peso do pet (kg):</label>
+            <input type="number" id="petweight" name="petweight" required>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+        <p id="message"></p>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
+---- Fim do arquivo: index.html ---- 
+ 
+---- Início do arquivo: loja.html ---- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja - Petshop</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="loja.js" defer></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="loja.html">Loja</a>
+    </nav>
+
+    <!-- Lista de produtos em cards -->
+    <section id="product-list">
+        <!-- Os cards serão gerados dinamicamente aqui -->
+    </section>
+
+    <div id="notification" class="notification">
+        Produto adicionado ao carrinho!
+    </div>
+</body>
+</html>
+---- Fim do arquivo: loja.html ---- 
+ 
+---- Início do arquivo: styles.css ---- 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+nav {
+    background-color: #4CAF50;
+    padding: 1em;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+#presentation {
+    text-align: center;
+    padding: 2em 0;
+}
+
+#presentation img {
+    width: 100px;
+    height: auto;
+    margin-top: 1em;
+}
+
+#form-section {
+    max-width: 600px;
+    margin: 2em auto;
+    padding: 2em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form label, form input {
+    display: block;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+#client-list {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 696px;
+    align-self: center;
+    }
+
+.card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 170px;
+    text-align: center;
+}
+
+@media (max-width: 695px) {
+    #client-list {
+        max-width: 464px;
+    }
+}
+
+@media (max-width: 463px) {
+    #client-list {
+        justify-content: center;
+    }
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    /* width: 70%; */
+    max-width: 300px;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.notification {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+---- Fim do arquivo: styles.css ---- 
+ 
+---- Início do arquivo: clientes.js ---- 
+// Carrega e exibe a lista de clientes
+document.addEventListener('DOMContentLoaded', function() {
+    const clientList = document.getElementById('client-list');
+
+    // Carrega os clientes do LocalStorage
+    for (let i = 0; i < localStorage.length; i++) {
+        let phone = localStorage.key(i);
+        let client = JSON.parse(localStorage.getItem(phone));
+
+        // Cria o card para cada cliente
+        let card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <h3>${client.petname}</h3>
+            <p>Data do atendimento: ${client.date}</p>
+        `;
+        card.addEventListener('click', function() {
+            showClientModal(client);
+        });
+
+        clientList.appendChild(card);
+    }  
+});
+
+// Exibe o modal com os detalhes do cliente
+function showClientModal(client) {
+
+    const modal = document.getElementById('client-modal');
+    const content = modal.querySelector('.modal-content');
+
+    content.innerHTML = `
+        <span class="close-button">×</span>
+        <h3>Detalhes do Cliente</h3>
+        <p>Nome completo: ${client.fullname}</p>
+        <p>Telefone: ${client.phone}</p>
+        <p>Endereço: ${client.address}</p>
+        <p>Data do atendimento: ${client.date}</p>
+        <p>Nome do animal: ${client.petname}</p>
+        <p>Idade do animal: ${client.petage} anos</p>
+        <p>Peso do animal: ${client.petweight} kg</p>
+    `;
+
+    modal.style.display = 'block';
+
+    const closeButton = content.querySelector('.close-button');
+    closeButton.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    document.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+}---- Fim do arquivo: clientes.js ---- 
+ 
+---- Início do arquivo: loja.js ---- 
+/* 
+    // Exemplo de produtos
+    const products = [
+        { id: 1, name: 'Ração para cães', image: 'path/to/image1.jpg', price: 'R$ 50,00' },
+        { id: 2, name: 'Brinquedo para gatos', image: 'path/to/image2.jpg', price: 'R$ 20,00' }
+    ];
+
+document.addEventListener('DOMContentLoaded', function() {
+    const productList = document.getElementById('product-list');
+
+    products.forEach(product => {
+        let card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>Preço: ${product.price}</p>
+            <button onclick="addToCart(${product.id})">Adicionar ao carrinho</button>
+        `;
+
+        productList.appendChild(card);
+    });
+});
+
+// ... (restante do código anterior)
+
+function addToCart(productId) {
+    // Recuperar o carrinho do LocalStorage
+    let cart = JSON.parse(localStorage.getItem('carrinho') || '[]');
+
+    // Verificar se o produto já está no carrinho
+    let productInCart = cart.find(p => p.id === productId);
+
+    if (productInCart) {
+        // Se o produto já estiver no carrinho, aumentamos a quantidade
+        productInCart.quantity += 1;
+    } else {
+        // Se não estiver, adicionamos o produto ao carrinho com quantidade 1
+        let product = products.find(p => p.id === productId);
+        product.quantity = 1;
+        cart.push(product);
+    }
+
+    // Salvar o carrinho atualizado no LocalStorage
+    localStorage.setItem('carrinho', JSON.stringify(cart));
+
+    // Mostrar notificação
+    const notification = document.getElementById('notification');
+    notification.style.display = 'block';
+
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 3000);
+}
+ */
+
+
+// Exemplo de produtos
+const products = [
+    { id: 1, name: 'Ração para cães', image: 'path/to/image1.jpg', price: 'R$ 50,00' },
+    { id: 2, name: 'Brinquedo para gatos', image: 'path/to/image2.jpg', price: 'R$ 20,00' }
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    const productList = document.getElementById('product-list');
+
+    products.forEach(product => {
+        let card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>Preço: ${product.price}</p>
+            <button onclick="addToCart(${product.id})">Adicionar ao carrinho</button>
+        `;
+
+        productList.appendChild(card);
+    });
+});
+
+function addToCart(productId) {
+    // Recuperar o carrinho do LocalStorage
+    let cart = JSON.parse(localStorage.getItem('carrinho') || '[]');
+
+    // Verificar se o produto já está no carrinho
+    let productInCart = cart.find(p => p.id === productId);
+
+    if (!productInCart) {
+        // Se o produto não estiver no carrinho, adicionamos
+        let product = products.find(p => p.id === productId);
+        cart.push(product);
+
+        // Salvar o carrinho atualizado no LocalStorage
+        localStorage.setItem('carrinho', JSON.stringify(cart));
+    }
+
+    // Mostrar notificação
+    const notification = document.getElementById('notification');
+    notification.style.display = 'block';
+
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 3000);
+}
+
+---- Fim do arquivo: loja.js ---- 
+ 
+---- Início do arquivo: script.js ---- 
+document.getElementById('client-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const client = {
+        fullname: e.target.fullname.value,
+        phone: e.target.phone.value,
+        address: e.target.address.value,
+        date: e.target.date.value,
+        petname: e.target.petname.value,
+        petage: e.target.petage.value,
+        petweight: e.target.petweight.value
+    };
+
+    localStorage.setItem(client.phone, JSON.stringify(client));
+
+    document.getElementById('message').innerText = "Cliente adicionado com sucesso!";
+
+    setTimeout(() => {
+        document.getElementById('message').innerText = "";
+    }, 3000);
+    
+    e.target.reset();
+}); 
+
+// Formatação do campo de telefone
+document.getElementById('phone').addEventListener('input', function(e) {
+    let value = e.target.value;
+
+    // Remove todos os caracteres não numéricos
+    value = value.replace(/\D/g, "");
+
+    // Adiciona o primeiro parêntese
+    if (value.length > 0) {
+        value = "(" + value;
+    }
+
+    // Fecha o parêntese e inicia os próximos números
+    if (value.length > 3) {
+        value = value.substring(0, 3) + ") " + value.substring(3);
+    }
+
+    // Adiciona o hífen
+    if (value.length > 9) {
+        value = value.substring(0, 10) + "-" + value.substring(10, 14);
+    }
+
+    // Limita o tamanho máximo (com os caracteres de formatação)
+    if (value.length > 15) {
+        value = value.substring(0, 15);
+    }
+
+    e.target.value = value;
+});---- Fim do arquivo: script.js ---- 
+ 
+---- Início do arquivo: clientes.html ---- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes - Petshop</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="clientes.js" defer></script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="loja.html">Loja</a>
+    </nav>
+
+    <!-- Lista de clientes em cards -->
+    <section id="client-list">
+        <!-- Os cards serão gerados dinamicamente aqui -->
+    </section>
+
+    <!-- Modal para detalhes do cliente -->
+    <div id="client-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <!-- Os detalhes do cliente serão inseridos aqui -->
+        </div>
+    </div>
+
+</body>
+</html>
+---- Fim do arquivo: clientes.html ---- 
+ 
+---- Início do arquivo: index.html ---- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Petshop - Início</title>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="loja.html">Loja</a>
+    </nav>
+    
+    <section id="presentation">
+        <img src="logo.jpg" alt="Logo da Petshop">
+        <h1>Bem-vindo à Petshop</h1>
+        <p>Os melhores serviços e produtos para o seu pet.</p>
+    </section>
+
+    <section id="form-section">
+        <h2>Cadastrar Cliente</h2>
+        <form id="client-form">
+            <label for="fullname">Nome completo:</label>
+            <input type="text" id="fullname" name="fullname" required>
+            
+            <label for="phone">Telefone:</label>
+            <input type="tel" id="phone" name="phone" placeholder="(XX) XXXXX-XXXX" required>
+            
+            <label for="address">Endereço:</label>
+            <input type="text" id="address" name="address" required>
+            
+            <label for="date">Data do atendimento:</label>
+            <input type="date" id="date" name="date" required>
+            
+            <label for="petname">Nome do pet:</label>
+            <input type="text" id="petname" name="petname" required>
+            
+            <label for="petage">Idade do pet (anos):</label>
+            <input type="number" id="petage" name="petage" required>
+            
+            <label for="petweight">Peso do pet (kg):</label>
+            <input type="number" id="petweight" name="petweight" required>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+        <p id="message"></p>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
+---- Fim do arquivo: index.html ---- 
+ 
+---- Início do arquivo: loja.html ---- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja - Petshop</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="loja.js" defer></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="loja.html">Loja</a>
+    </nav>
+
+    <!-- Lista de produtos em cards -->
+    <section id="product-list">
+        <!-- Os cards serão gerados dinamicamente aqui -->
+    </section>
+
+    <div id="notification" class="notification">
+        Produto adicionado ao carrinho!
+    </div>
+</body>
+</html>
+---- Fim do arquivo: loja.html ---- 
+ 
+---- Início do arquivo: styles.css ---- 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    background-color: #4CAF50;
+    padding: 1em;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+#presentation {
+    text-align: center;
+    padding: 2em 0;
+}
+
+#presentation img {
+    width: 100px;
+    height: auto;
+    margin-top: 1em;
+}
+
+#form-section {
+    width: 100%;
+    max-width: 600px;
+    margin: 2em auto;
+    padding: 2em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    /* display: flex;
+    flex-direction: column; */
+    /* align-items: stretch; */
+}
+
+form label, form input {
+    display: block;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+#client-list {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 696px;
+    align-self: center;
+    }
+
+.card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 170px;
+    text-align: center;
+}
+
+@media (max-width: 695px) {
+    #client-list {
+        max-width: 464px;
+    }
+}
+
+@media (max-width: 463px) {
+    #client-list {
+        justify-content: center;
+    }
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    /* width: 70%; */
+    max-width: 300px;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.notification {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+---- Fim do arquivo: styles.css ---- 
+ 
+---- Início do arquivo: clientes.js ---- 
+// Carrega e exibe a lista de clientes
+document.addEventListener('DOMContentLoaded', function() {
+    const clientList = document.getElementById('client-list');
+
+    // Carrega os clientes do LocalStorage
+    for (let i = 0; i < localStorage.length; i++) {
+        let phone = localStorage.key(i);
+        let client = JSON.parse(localStorage.getItem(phone));
+
+        // Cria o card para cada cliente
+        let card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <h3>${client.petname}</h3>
+            <p>Data do atendimento: ${client.date}</p>
+        `;
+        card.addEventListener('click', function() {
+            showClientModal(client);
+        });
+
+        clientList.appendChild(card);
+    }  
+});
+
+// Exibe o modal com os detalhes do cliente
+function showClientModal(client) {
+
+    const modal = document.getElementById('client-modal');
+    const content = modal.querySelector('.modal-content');
+
+    content.innerHTML = `
+        <span class="close-button">×</span>
+        <h3>Detalhes do Cliente</h3>
+        <p>Nome completo: ${client.fullname}</p>
+        <p>Telefone: ${client.phone}</p>
+        <p>Endereço: ${client.address}</p>
+        <p>Data do atendimento: ${client.date}</p>
+        <p>Nome do animal: ${client.petname}</p>
+        <p>Idade do animal: ${client.petage} anos</p>
+        <p>Peso do animal: ${client.petweight} kg</p>
+    `;
+
+    modal.style.display = 'block';
+
+    const closeButton = content.querySelector('.close-button');
+    closeButton.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    document.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+}---- Fim do arquivo: clientes.js ---- 
+ 
+---- Início do arquivo: loja.js ---- 
+/* 
+    // Exemplo de produtos
+    const products = [
+        { id: 1, name: 'Ração para cães', image: 'path/to/image1.jpg', price: 'R$ 50,00' },
+        { id: 2, name: 'Brinquedo para gatos', image: 'path/to/image2.jpg', price: 'R$ 20,00' }
+    ];
+
+document.addEventListener('DOMContentLoaded', function() {
+    const productList = document.getElementById('product-list');
+
+    products.forEach(product => {
+        let card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>Preço: ${product.price}</p>
+            <button onclick="addToCart(${product.id})">Adicionar ao carrinho</button>
+        `;
+
+        productList.appendChild(card);
+    });
+});
+
+// ... (restante do código anterior)
+
+function addToCart(productId) {
+    // Recuperar o carrinho do LocalStorage
+    let cart = JSON.parse(localStorage.getItem('carrinho') || '[]');
+
+    // Verificar se o produto já está no carrinho
+    let productInCart = cart.find(p => p.id === productId);
+
+    if (productInCart) {
+        // Se o produto já estiver no carrinho, aumentamos a quantidade
+        productInCart.quantity += 1;
+    } else {
+        // Se não estiver, adicionamos o produto ao carrinho com quantidade 1
+        let product = products.find(p => p.id === productId);
+        product.quantity = 1;
+        cart.push(product);
+    }
+
+    // Salvar o carrinho atualizado no LocalStorage
+    localStorage.setItem('carrinho', JSON.stringify(cart));
+
+    // Mostrar notificação
+    const notification = document.getElementById('notification');
+    notification.style.display = 'block';
+
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 3000);
+}
+ */
+
+
+// Exemplo de produtos
+const products = [
+    { id: 1, name: 'Ração para cães', image: 'racao.jpg', price: 'R$ 50,00' },
+    { id: 2, name: 'Brinquedo para gatos', image: 'brinquedo.jpg', price: 'R$ 20,00' }
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    const productList = document.getElementById('product-list');
+
+    products.forEach(product => {
+        let card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>Preço: ${product.price}</p>
+            <button onclick="addToCart(${product.id})">Adicionar ao carrinho</button>
+        `;
+
+        productList.appendChild(card);
+    });
+});
+
+function addToCart(productId) {
+    // Recuperar o carrinho do LocalStorage
+    let cart = JSON.parse(localStorage.getItem('carrinho') || '[]');
+
+    // Verificar se o produto já está no carrinho
+    let productInCart = cart.find(p => p.id === productId);
+
+    if (!productInCart) {
+        // Se o produto não estiver no carrinho, adicionamos
+        let product = products.find(p => p.id === productId);
+        cart.push(product);
+
+        // Salvar o carrinho atualizado no LocalStorage
+        localStorage.setItem('carrinho', JSON.stringify(cart));
+    }
+
+    // Mostrar notificação
+    const notification = document.getElementById('notification');
+    notification.style.display = 'block';
+
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 3000);
+}
+
+---- Fim do arquivo: loja.js ---- 
+ 
+---- Início do arquivo: script.js ---- 
+document.getElementById('client-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const client = {
+        fullname: e.target.fullname.value,
+        phone: e.target.phone.value,
+        address: e.target.address.value,
+        date: e.target.date.value,
+        petname: e.target.petname.value,
+        petage: e.target.petage.value,
+        petweight: e.target.petweight.value
+    };
+
+    localStorage.setItem(client.phone, JSON.stringify(client));
+
+    document.getElementById('message').innerText = "Cliente adicionado com sucesso!";
+
+    setTimeout(() => {
+        document.getElementById('message').innerText = "";
+    }, 3000);
+    
+    e.target.reset();
+}); 
+
+// Formatação do campo de telefone
+document.getElementById('phone').addEventListener('input', function(e) {
+    let value = e.target.value;
+
+    // Remove todos os caracteres não numéricos
+    value = value.replace(/\D/g, "");
+
+    // Adiciona o primeiro parêntese
+    if (value.length > 0) {
+        value = "(" + value;
+    }
+
+    // Fecha o parêntese e inicia os próximos números
+    if (value.length > 3) {
+        value = value.substring(0, 3) + ") " + value.substring(3);
+    }
+
+    // Adiciona o hífen
+    if (value.length > 9) {
+        value = value.substring(0, 10) + "-" + value.substring(10, 14);
+    }
+
+    // Limita o tamanho máximo (com os caracteres de formatação)
+    if (value.length > 15) {
+        value = value.substring(0, 15);
+    }
+
+    e.target.value = value;
+});---- Fim do arquivo: script.js ---- 
+ 
+---- Início do arquivo: clientes.html ---- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes - Petshop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="clientes.js" defer></script>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="loja.html">Loja</a>
+    </nav>
+
+    <section id="presentation">
+        <h1>Lista de Clientes</h1>
+    </section>
+
+    <section id="client-list">
+    </section>
+
+    <div id="client-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+        </div>
+    </div>
+
+</body>
+</html>
+---- Fim do arquivo: clientes.html ---- 
+ 
+---- Início do arquivo: index.html ---- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Petshop - Início</title>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="loja.html">Loja</a>
+    </nav>
+    
+    <section id="presentation">
+        <img src="logo.png" alt="Logo da Petshop">
+        <h1>Bem-vindo à Petshop</h1>
+        <p>Os melhores serviços e produtos para o seu pet.</p>
+    </section>
+
+    <section id="form-section">
+        <h2>Cadastrar Cliente</h2>
+        <form id="client-form">
+            <label for="fullname">Nome completo:</label>
+            <input type="text" id="fullname" name="fullname" required>
+            
+            <label for="phone">Telefone:</label>
+            <input type="tel" id="phone" name="phone" placeholder="(XX) XXXXX-XXXX" required>
+            
+            <label for="address">Endereço:</label>
+            <input type="text" id="address" name="address" required>
+            
+            <label for="date">Data do atendimento:</label>
+            <input type="date" id="date" name="date" required>
+            
+            <label for="petname">Nome do pet:</label>
+            <input type="text" id="petname" name="petname" required>
+            
+            <label for="petage">Idade do pet (anos):</label>
+            <input type="number" id="petage" name="petage" required>
+            
+            <label for="petweight">Peso do pet (kg):</label>
+            <input type="number" id="petweight" name="petweight" required>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+        <p id="message"></p>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
+---- Fim do arquivo: index.html ---- 
+ 
+---- Início do arquivo: loja.html ---- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja - Petshop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="loja.js" defer></script>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="loja.html">Loja</a>
+    </nav>
+
+    <section id="presentation">
+        <h1>Lista de Produtos</h1>
+    </section>
+
+    <section id="product-list">
+    </section>
+
+    <div id="notification">
+        Produto adicionado ao carrinho!
+    </div>
+</body>
+</html>
+---- Fim do arquivo: loja.html ---- 
+ 
+---- Início do arquivo: styles.css ---- 
+body {
+    /* font-family: Arial, sans-serif; */
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    background-color: black;
+    padding: 1em;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+#presentation {
+    text-align: center;
+    padding: 2em 0;
+}
+
+#presentation img {
+    width: 100px;
+    height: auto;
+    margin-top: 1em;
+}
+
+#form-section {
+    width: calc(100% - 85px);
+    max-width: 600px;
+    margin: 2em auto;
+    padding: 2em;
+    border: 1px solid #5a5a5a;
+    border-radius: 5px;
+}
+
+form label, form input {
+    display: block;
+    width: 100%;
+    }
+
+form label {
+    margin-bottom: 2px;
+}
+
+form input {
+    margin-bottom: 15px;
+}
+
+form button {
+    background-color: #5a5a5a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+form button:hover {
+    background-color: #303030;
+}
+
+header {
+    max-width: 696px;
+    align-self: center;
+}
+
+#client-list, #product-list {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 696px;
+    align-self: center;
+    }
+
+    
+@media (max-width: 695px) {
+    #client-list, #product-list {
+        max-width: 464px;
+    }
+}
+
+@media (max-width: 463px) {
+    #client-list, #product-list {
+        justify-content: center;
+    }
+}
+
+#client-list .card {
+    border: 1px solid #5a5a5a;
+    padding: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 170px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#client-list .card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+#product-list .card {
+    border: 1px solid #5a5a5a;
+    padding: 20px;
+    margin: 10px;
+    width: 170px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    max-width: 300px;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+#product-list img {
+    width: 170px;
+    height: 170px;
+    object-fit: fill;
+}
+
+#product-list .product-name {
+    font-size: 17px;
+    text-align: left;
+    margin: 10px 0 5px;
+}
+
+#product-list .product-price {
+    font-size: 15px;
+    text-align: left;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+#product-list button {
+    font-size: 13px;
+    padding: 8px 13px;
+    color: #fff;
+    background-color: #5a5a5a;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#product-list button:hover {
+    background-color: #303030;
+}
+
+#notification {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+---- Fim do arquivo: styles.css ---- 
+ 
+---- Início do arquivo: clientes.js ---- 
+// Carrega e exibe a lista de clientes
+document.addEventListener('DOMContentLoaded', function() {
+    const clientList = document.getElementById('client-list');
+
+    // Carrega os clientes do LocalStorage
+    for (let i = 0; i < localStorage.length; i++) {
+        let phone = localStorage.key(i);
+        let client = JSON.parse(localStorage.getItem(phone));
+
+        // Cria o card para cada cliente
+        let card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <h3>${client.petname}</h3>
+            <p>Data do atendimento: ${client.date}</p>
+        `;
+        card.addEventListener('click', function() {
+            showClientModal(client);
+        });
+
+        clientList.appendChild(card);
+    }  
+});
+
+// Exibe o modal com os detalhes do cliente
+function showClientModal(client) {
+
+    const modal = document.getElementById('client-modal');
+    const content = modal.querySelector('.modal-content');
+
+    content.innerHTML = `
+        <span class="close-button">×</span>
+        <h3>Detalhes do Cliente</h3>
+        <p>Nome completo: ${client.fullname}</p>
+        <p>Telefone: ${client.phone}</p>
+        <p>Endereço: ${client.address}</p>
+        <p>Data do atendimento: ${client.date}</p>
+        <p>Nome do animal: ${client.petname}</p>
+        <p>Idade do animal: ${client.petage} anos</p>
+        <p>Peso do animal: ${client.petweight} kg</p>
+    `;
+
+    modal.style.display = 'block';
+
+    const closeButton = content.querySelector('.close-button');
+    closeButton.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    document.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+}---- Fim do arquivo: clientes.js ---- 
+ 
+---- Início do arquivo: loja.js ---- 
+// Exemplo de produtos
+const products = [
+    { id: 1, name: 'Ração para cães', image: 'racao.png', price: 'R$ 49,90' },
+    { id: 2, name: 'Brinquedo para gatos', image: 'brinquedo.png', price: 'R$ 19,90' }
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    const productList = document.getElementById('product-list');
+
+    products.forEach(product => {
+        let card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <p class="product-name">${product.name}</p>
+            <p class="product-price">${product.price}</p>
+            <button onclick="addToCart(${product.id})">Adicionar ao carrinho</button>
+        `;
+
+        productList.appendChild(card);
+    });
+});
+
+function addToCart(productId) {
+    // Recuperar o carrinho do LocalStorage
+    let cart = JSON.parse(localStorage.getItem('carrinho') || '[]');
+
+    // Verificar se o produto já está no carrinho
+    let productInCart = cart.find(p => p.id === productId);
+
+    if (!productInCart) {
+        // Se o produto não estiver no carrinho, adicionamos
+        let product = products.find(p => p.id === productId);
+        cart.push(product);
+
+        // Salvar o carrinho atualizado no LocalStorage
+        localStorage.setItem('carrinho', JSON.stringify(cart));
+    }
+
+    // Mostrar notificação
+    const notification = document.getElementById('notification');
+    notification.style.display = 'block';
+
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 3000);
+}
+
+---- Fim do arquivo: loja.js ---- 
+ 
+---- Início do arquivo: script.js ---- 
+document.getElementById('client-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const client = {
+        fullname: e.target.fullname.value,
+        phone: e.target.phone.value,
+        address: e.target.address.value,
+        date: e.target.date.value,
+        petname: e.target.petname.value,
+        petage: e.target.petage.value,
+        petweight: e.target.petweight.value
+    };
+
+    localStorage.setItem(client.phone, JSON.stringify(client));
+
+    document.getElementById('message').innerText = "Cliente adicionado com sucesso!";
+
+    setTimeout(() => {
+        document.getElementById('message').innerText = "";
+    }, 3000);
+    
+    e.target.reset();
+}); 
+
+// Formatação do campo de telefone
+document.getElementById('phone').addEventListener('input', function(e) {
+    let value = e.target.value;
+
+    // Remove todos os caracteres não numéricos
+    value = value.replace(/\D/g, "");
+
+    // Adiciona o primeiro parêntese
+    if (value.length > 0) {
+        value = "(" + value;
+    }
+
+    // Fecha o parêntese e inicia os próximos números
+    if (value.length > 3) {
+        value = value.substring(0, 3) + ") " + value.substring(3);
+    }
+
+    // Adiciona o hífen
+    if (value.length > 9) {
+        value = value.substring(0, 10) + "-" + value.substring(10, 14);
+    }
+
+    // Limita o tamanho máximo (com os caracteres de formatação)
+    if (value.length > 15) {
+        value = value.substring(0, 15);
+    }
+
+    e.target.value = value;
+});---- Fim do arquivo: script.js ---- 
