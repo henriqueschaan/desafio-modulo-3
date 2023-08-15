@@ -1,7 +1,9 @@
 // Exemplo de produtos
 const products = [
     { id: 1, name: 'Ração para cães', image: 'racao.png', price: 'R$ 49,90' },
-    { id: 2, name: 'Brinquedo para gatos', image: 'brinquedo.png', price: 'R$ 19,90' }
+    { id: 2, name: 'Brinquedo para gatos', image: 'brinquedo.png', price: 'R$ 19,90' },
+    { id: 3, name: 'Osso de borracha', image: 'dogbone.png', price: 'R$ 29,90' },
+    { id: 4, name: 'Coleira', image: 'dogleash.png', price: 'R$ 35,90' }
 ];
 
 document.addEventListener('DOMContentLoaded', function() {
