@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         card.className = 'card';
         card.innerHTML = `
             <h3>${client.petname}</h3>
-            <p>Data do atendimento: ${client.date}</p>
+            <p>Data do atendimento: ${formatDate(client.date)}</p>
         `;
         card.addEventListener('click', function() {
             showClientModal(client);
@@ -34,7 +34,7 @@ function showClientModal(client) {
         <p>Nome completo: ${client.fullname}</p>
         <p>Telefone: ${client.phone}</p>
         <p>Endereço: ${client.address}</p>
-        <p>Data do atendimento: ${client.date}</p>
+        <p>Data do atendimento: ${formatDate(client.date)}</p>
         <p>Nome do pet: ${client.petname}</p>
         <p>Idade do pet: ${client.petage} anos</p>
         <p>Peso do pet: ${client.petweight} kg</p>
@@ -52,4 +52,14 @@ function showClientModal(client) {
             modal.style.display = 'none';
         }
     });
+}
+
+// Formatador de datas
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
 }
