@@ -35,9 +35,9 @@ function showClientModal(client) {
         <p>Telefone: ${client.phone}</p>
         <p>Endereço: ${client.address}</p>
         <p>Data do atendimento: ${client.date}</p>
-        <p>Nome do animal: ${client.petname}</p>
-        <p>Idade do animal: ${client.petage} anos</p>
-        <p>Peso do animal: ${client.petweight} kg</p>
+        <p>Nome do pet: ${client.petname}</p>
+        <p>Idade do pet: ${client.petage} anos</p>
+        <p>Peso do pet: ${client.petweight} kg</p>
     `;
 
     modal.style.display = 'block';
