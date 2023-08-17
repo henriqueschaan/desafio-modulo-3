@@ -7,24 +7,26 @@ document.addEventListener('DOMContentLoaded', function() {
         let phone = localStorage.key(i);
         let client = JSON.parse(localStorage.getItem(phone));
 
-        // Cria o card para cada cliente
-        let card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-            <h3>${client.petname}</h3>
-            <p>Data do atendimento: ${formatDate(client.date)}</p>
-        `;
-        card.addEventListener('click', function() {
-            showClientModal(client);
-        });
+        // Confere se o cliente tem dados necessários
+        if (client && client.petname && client.date) {
+            // Cria o card para cada cliente
+            let card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <h3>${client.petname}</h3>
+                <p>Data do atendimento: ${formatDate(client.date)}</p>
+            `;
+            card.addEventListener('click', function() {
+                showClientModal(client);
+            });
 
-        clientList.appendChild(card);
+            clientList.appendChild(card);
+        }
     }  
 });
 
 // Exibe o modal com os detalhes do cliente
 function showClientModal(client) {
-
     const modal = document.getElementById('client-modal');
     const content = modal.querySelector('.modal-content');
 
